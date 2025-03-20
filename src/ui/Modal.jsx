@@ -1,7 +1,9 @@
+import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
-
+import { useOutsideClick } from "../hooks/useOutsideClick";
+// import Button from "./Button";
 const StyledModal = styled.div`
 	position: fixed;
 	top: 50%;
@@ -50,6 +52,47 @@ const Button = styled.button`
 		color: var(--color-grey-500);
 	}
 `;
+// following is the compound component way of creating a modal component
+const ModalContext = createContext();
+function Modal({ children }) {
+	const [openName, setOpenName] = useState("");
+	// the following are handler components
+	const close = () => setOpenName("");
+	const open = (name) => setOpenName(name);
+
+	return (
+		<ModalContext.Provider value={{ openName, close, open }}>
+			{children}
+		</ModalContext.Provider>
+	);
+}
+
+function Open({ children, opens: openWindowName }) {
+	const { open } = useContext(ModalContext);
+	return cloneElement(children, { onClick: () => open(openWindowName) });
+}
+
+function Window({ children, name }) {
+	const { openName, close } = useContext(ModalContext);
+	const ref = useOutsideClick(close);
+	if (name !== openName) return null;
+	return createPortal(
+		<Overlay>
+			<StyledModal ref={ref}>
+				<Button onClick={close}>
+					<HiXMark />
+				</Button>
+				<div>{cloneElement(children, { onCloseModel: close })}</div>
+			</StyledModal>
+		</Overlay>,
+		document.body
+	);
+}
+
+Modal.Open = Open;
+Modal.Window = Window;
+export default Modal;
+/* Following is the conventional way of creating Model Component
 function Modal({ children, onClose }) {
 	return createPortal(
 		<Overlay>
@@ -62,7 +105,6 @@ function Modal({ children, onClose }) {
 		</Overlay>,
 		document.body
 	);
-}
+}*/
 
-export default Modal;
 //create portal is used to render a child into a different part of the DOM tree. it used for following purposes:models, tooltips, popovers, dropdowns etc. it is used to render the modal component outside of the parent component and prevent it from being clipped by the parent component. it has nothing to do with react; it is purely dom property.
