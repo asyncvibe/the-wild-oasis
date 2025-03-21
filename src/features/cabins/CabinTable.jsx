@@ -9,6 +9,7 @@ function CabinTable() {
 	const { isLoading, cabins } = useReadCabin();
 	const [searchParams] = useSearchParams();
 	if (isLoading) return <Spinner />;
+	if (!cabins.length) return <Empty resource="cabin" />;
 	// 1) Filter logic
 	const filterValue = searchParams.get("discount") || "all";
 	let filterCabins;
