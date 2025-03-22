@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Bookings from "./pages/Bookings";
+import Booking from "./pages/Booking";
 import Cabins from "./pages/Cabins";
 import Settings from "./pages/Settings";
 import Users from "./pages/Users";
@@ -30,6 +31,7 @@ function App() {
 						<Route index element={<Navigate to="/dashboard" replace />} />
 						<Route path="/dashboard" element={<Dashboard />} />
 						<Route path="/bookings" element={<Bookings />} />
+						<Route path="/booking/:bookingId" element={<Booking />} />
 						<Route path="/cabins" element={<Cabins />} />
 						<Route path="/settings" element={<Settings />} />
 						<Route path="users" element={<Users />} />

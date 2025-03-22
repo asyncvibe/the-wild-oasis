@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 const Row = styled.div`
 	/* display: flex; */
 	${(props) =>
-		props.type === "horizontal" &&
+		props.$type === "horizontal" &&
 		css`
 			display: flex;
 			justify-content: space-between;

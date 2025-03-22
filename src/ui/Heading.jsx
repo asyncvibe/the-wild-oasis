@@ -16,7 +16,7 @@ const headingStyles = {
 };
 
 const Heading = styled.h1`
-	${(props) => headingStyles[props.as] || headingStyles.h1}
+	${(props) => headingStyles[props.$as] || headingStyles.h1}
 	line-height: 1.4;
 `;
 
