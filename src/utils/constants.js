@@ -1,2 +1,2 @@
-const PAGE_SIZE = 4;
+const PAGE_SIZE = 10;
 export { PAGE_SIZE };

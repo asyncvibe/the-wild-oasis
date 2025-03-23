@@ -38,8 +38,8 @@ function Filter({ filterFiled, options }) {
 	const [searchParams, setSearchParams] = useSearchParams();
 	function handleClick(value) {
 		searchParams.set(filterFiled, value);
+		if (searchParams.get("page")) searchParams.set("page", 1);
 		setSearchParams(searchParams);
-		console.log(value);
 	}
 	return (
 		<StyledFilter>
