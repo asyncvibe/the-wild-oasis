@@ -80,9 +80,10 @@ function SignupForm() {
 				{/* type is an HTML attribute! */}
 				<Button
 					$variation="secondary"
-					$type="reset"
+					type="reset"
 					disabled={isPending}
-					$size="large">
+					$size="large"
+					onClick={reset}>
 					Cancel
 				</Button>
 				<Button disabled={isPending} $variation="primary" $size="large">
