@@ -15,7 +15,6 @@ function UpdateSettingsForm() {
 		} = {},
 	} = useReadSettings();
 	const { isUpdating, updateSettings } = useUpdateSettings();
-	console.log("status", isUpdating);
 	if (isLoading) return <Spinner />;
 	function handleUpdate(e, field) {
 		updateSettings({ [field]: e.target.value });
