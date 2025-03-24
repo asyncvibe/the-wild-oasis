@@ -14,6 +14,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import CheckIn from "./pages/CheckIn";
+import ProtectedRoute from "./ui/ProtectedRoute";
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
@@ -28,7 +29,12 @@ function App() {
 			<GlobalStyles />
 			<BrowserRouter>
 				<Routes>
-					<Route element={<AppLayout />}>
+					<Route
+						element={
+							<ProtectedRoute>
+								<AppLayout />
+							</ProtectedRoute>
+						}>
 						<Route index element={<Navigate to="/dashboard" replace />} />
 						<Route path="/dashboard" element={<Dashboard />} />
 						<Route path="/bookings" element={<Bookings />} />
@@ -76,3 +82,5 @@ export default App;
 // In this case, we set the staleTime to 0 for all queries in the QueryClient options.
 // This means that the data will be refetched every time it is queried.
 // This is useful for real-time data that changes frequently.
+
+// Authorization: as rest of the routes are children of app layout we will only add authorization to the routes that are not children of app layout and app layout will handle the authorization for its children

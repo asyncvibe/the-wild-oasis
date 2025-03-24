@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import BookingDataBox from "./BookingDataBox";
 import Row from "../../ui/Row";
 import Heading from "../../ui/Heading";
@@ -12,9 +11,7 @@ import { useMoveBack } from "../../hooks/useMoveBack";
 import { useBooking } from "./useBooking";
 import { useNavigate } from "react-router-dom";
 import { useCheckout } from "../check-in-out/useCheckout";
-import { HiArrowUpOnSquare } from "react-icons/hi2";
 import ConfirmDelete from "../../ui/ConfirmDelete";
-import { useState } from "react";
 import Modal from "../../ui/Modal";
 import { useDeleteBooking } from "./useDeleteBooking";
 
@@ -96,3 +93,9 @@ function BookingDetail() {
 }
 
 export default BookingDetail;
+/* onSuccess and onSettled are the optional parameters that we can pass on the client side in the case of success or the failure of the api call and then we can navigate back or perform any other action. following is its example: onConfirm={() => {
+							deleteBooking(id, {
+								onSettled: () => navigate(-1),
+							});
+						}}
+*/
