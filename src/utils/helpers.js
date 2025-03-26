@@ -21,7 +21,13 @@ export const getToday = function (options = {}) {
 		today.setUTCHours(23, 59, 59, 999);
 	else today.setUTCHours(0, 0, 0, 0);
 	return today.toISOString();
+
+	// return today.toISOString().split("T")[0]; // Extracts YYYY-MM-DD
 };
+// export const getToday = function () {
+// 	const today = new Date();
+// 	return today.toISOString().split("T")[0]; // Extracts YYYY-MM-DD
+// };
 
 export const formatCurrency = (value) =>
 	new Intl.NumberFormat("en", { style: "currency", currency: "USD" }).format(
